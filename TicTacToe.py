@@ -87,7 +87,7 @@ def getComputerMove(board, computerLetter):
 
     for i in range(1, 10):
         boardCopy = getBoardCopy(board)
-        if isSpaceFree((boardCopy, playerLetter, i)):
+        if isSpaceFree(boardCopy, i):
             makeMove(boardCopy, playerLetter, i)
             if isWinner(boardCopy, playerLetter):
                 return i
