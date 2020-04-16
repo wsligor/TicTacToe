@@ -109,16 +109,47 @@ def isBoardFull(board)-> bool:
 
 print('Игра "Крестки нолики"')
 
+while True:
+    theBoard = [' '] * 10
+    playerLetter, computerLetter = inputPlayerLetter()
+    turn = whoGoesFirst()
+    print('' + turn + ' ходит первым.')
+    gameIsPlaying = True
 
+    while gameIsPlaying:
+        if turn == 'Человек':
+            drawBoard(theBoard)
+            move = getPlayerMove(theBoard)
+            makeMove(theBoard, playerLetter, move)
 
+            if isWinner((theBoard, playerLetter)):
+                drawBoard((theBoard))
+                print('Winner')
+                gameIsPlaying = False
+            else:
+                if isBoardFull(theBoard):
+                    drawBoard(theBoard)
+                    print('Ничья')
+                    break
+                else:
+                    turn = 'Computer'
+        else:
+            move = getComputerMove(theBoard, computerLetter)
+            makeMove(theBoard, computerLetter, move)
 
-def main():
-    board = ['0',
-             'O', 'X', 'O',
-             'O', 'X', 'X',
-             'X', 'X', 'O']
-    x = isWinner(board, 'X')
-    print(x)
+            if isWinner(theBoard, computerLetter):
+                drawBoard(theBoard)
+                print('Computer Winner!')
+                gameIsPlaying = False
+            else:
+                if isBoardFull(theBoard):
+                    drawBoard(theBoard)
+                    print('Ничья')
+                    break
+                else:
+                    turn = 'Man'
 
+    print('Еще разок')
+    if not input().lower().startswith('д'):
+        break
 
-main()
