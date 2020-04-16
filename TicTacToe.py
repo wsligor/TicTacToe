@@ -78,6 +78,38 @@ def getComputerMove(board, computerLetter):
     else:
         playerLetter = 'X'
 
+    for i in range(1, 10):
+        boardCopy = getBoardCopy(board)
+        if isSpaceFree(boardCopy, i):
+            makeMove(boardCopy, computerLetter, i)
+            if isWinner(boardCopy, computerLetter):
+                return i
+
+    for i in range(1, 10):
+        boardCopy = getBoardCopy(board)
+        if isSpaceFree((boardCopy, playerLetter, i)):
+            makeMove(boardCopy, playerLetter, i)
+            if isWinner(boardCopy, playerLetter):
+                return i
+
+    move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
+    if move != None:
+        return move
+
+    if isSpaceFree(board, 5):
+        return 5
+
+    return chooseRandomMoveFromList(board, [2, 4, 6, 8])
+
+def isBoardFull(board)-> bool:
+    for i in range(1, 10):
+        if isSpaceFree(board, i):
+            return False
+    return True
+
+print('Игра "Крестки нолики"')
+
+
 
 
 def main():
