@@ -23,7 +23,7 @@ def inputPlayerLetter():
 
 def whoGoesFirst():
     if random.randint(0, 1) == 0:
-        return 'Komp'
+        return 'Comp'
     else:
         return 'Man'
 
@@ -117,12 +117,12 @@ while True:
     gameIsPlaying = True
 
     while gameIsPlaying:
-        if turn == 'Человек':
+        if turn == 'Man':
             drawBoard(theBoard)
             move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
 
-            if isWinner((theBoard, playerLetter)):
+            if isWinner(theBoard, playerLetter):
                 drawBoard((theBoard))
                 print('Winner')
                 gameIsPlaying = False
@@ -132,7 +132,7 @@ while True:
                     print('Ничья')
                     break
                 else:
-                    turn = 'Computer'
+                    turn = 'Comp'
         else:
             move = getComputerMove(theBoard, computerLetter)
             makeMove(theBoard, computerLetter, move)
@@ -150,6 +150,6 @@ while True:
                     turn = 'Man'
 
     print('Еще разок')
-    if not input().lower().startswith('д'):
+    if not input().lower().startswith('y'):
         break
 
